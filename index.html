@@ -1,3 +1,355 @@
+<!DOCTYPE html>
 <html>
-<p> Hallo </p
-</html
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<link rel=icon href=favicon-32x32.ico>
+    	<link href=/apple-touch-icon-120x120.png rel=apple-touch-icon>
+	</head>
+	<title>
+		Presto.cc
+	</title>
+	<style type="text/css"> 
+
+	body{
+		font-family: futura;
+		color: #3C4657;
+		background: white;
+		}
+/*######################### MOBILES #########################*/
+		.container {
+		max-width: 800px;
+		min-width: 600px;
+		width:  100%;
+		background-color: white;
+		position: float;
+		margin: auto;
+
+		display: grid;
+		grid-template-columns:100%;
+		grid-template-rows: 50px 300px auto auto 50px;
+		grid-gap: 10px;
+		grid-template-areas:
+			"space_top" 
+   			"banner"
+   			"text"
+   			"mini"
+   			"space_bottom";
+   		justify-content: center;
+		}
+
+		.banner {
+			grid-area: banner;
+		}
+		.photo {
+		  	background: white;
+		  	height: 300px ;
+		  	width: 300px;
+		  	margin: auto;
+		}
+		.photo>img {
+		  	object-fit: contain;
+		  	width: 100%;
+		  	max-height: 100%;
+		}
+
+		.mini {
+  			grid-area: mini;
+  			background: white;
+  			width: 90%;
+  			margin: auto;
+
+  			display:  grid;
+  			grid-template-columns: auto-fit, minmax(300px, 1fr);
+			grid-gap: 10px;
+			grid-template-areas: none;
+			justify-items: center;
+			align-items: center;
+			justify-content: center;
+			background-color: white;
+  		}
+
+  		.mini>img {
+		  	object-fit: scale-down;
+		  	max-width: 100%;
+		  	margin: auto;
+		}
+		.minimaps {
+  			object-fit: scale-down;
+  			max-width: 100%;
+  			margin: auto;
+  		}
+
+  		.minimaps>img {
+		  	object-fit: scale-down;
+		  	max-width: 100%;
+		  	margin: auto;
+		}
+
+		.item {
+			background: white;
+			display: flex;
+  			justify-content: center;
+  			align-items: center;
+  			flex-direction: column;
+		}
+
+  		.text {
+  			display: flex;
+  			grid-area: text;
+  			background: white;
+  			justify-content: center;
+  			align-items: center;
+  			flex-direction: column;
+  			font-size: 42px;
+  			letter-spacing: 0.4em;
+  		}
+  		hr {
+  			border: none;
+  			width: 96%;               
+  			background-color:#3C4657;
+  			height: 1px;
+		}
+
+		.space {
+			grid-area: space_top, space_bottom;
+			background: white;
+		}
+		.space>img {
+			object-fit: scale-down;
+		  	max-width: 100%;
+		  	margin: auto;
+		}
+/*######################### SMALL SCREENS #########################*/
+		@media only screen and (min-width: 1000px) {
+  		.container {
+		max-width: 1000px;
+/*		min-width: 960px;*/
+		width:  100%;
+		background-color: white;
+		position: float;
+		margin: auto;
+
+		display: grid;
+		grid-template-columns:100%;
+		grid-template-rows: 50px 200px 200px auto 50px;
+		grid-gap: 10px;
+		grid-template-areas:
+			"space_top" 
+   			"banner"
+   			"text"
+   			"mini"
+   			"space_bottom";
+   		justify-content: center;
+		}
+
+		.banner {
+			grid-area: banner;
+		}
+		.photo {
+		  	background: white;
+		  	height: 200px ;
+		  	width: 200px;
+		  	margin: auto;
+		}
+		.photo>img {
+		  	object-fit: contain;
+		  	width: 100%;
+		  	max-height: 100%;
+		}
+
+		.mini {
+  			grid-area: mini;
+  			background: white;
+  			width: 90%;
+  			margin: auto;
+
+  			display:  grid;
+  			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			grid-gap: 10px;
+			grid-template-areas: none;
+			justify-items: center;
+			align-items: center;
+			justify-content: center;
+  		}
+  		.minimaps {
+  			object-fit: scale-down;
+  			max-width: 100%;
+  			margin: auto;
+  			transition: transform 250ms;
+  			cursor: pointer;
+  		}
+  		.minimaps:hover {
+  			transform: translateY(-10px);
+  		}
+
+  		.minimaps>img {
+		  	object-fit: scale-down;
+		  	max-width: 100%;
+		  	margin: auto;
+		}
+
+		.item {
+			background: white;
+			display: flex;
+  			justify-content: center;
+  			align-items: center;
+  			flex-direction: column;
+		}
+
+  		.text {
+  			display: flex;
+  			grid-area: text;
+  			background: white;
+  			justify-content: center;
+  			align-items: center;
+  			flex-direction: column;
+  			font-size: 24px;
+  			letter-spacing: 0.4em;
+  		}
+  		hr {
+  			border: none;
+  			width: 96%;               
+  			background-color:#3C4657;
+  			height: 1px;
+		}
+
+		.space {
+			grid-area: space_top, space_bottom;
+			background: white;
+		}
+		.space>img {
+			object-fit: scale-down;
+		  	max-width: 100%;
+		  	margin: auto;
+		}
+		}
+/*######################### BIG SCREENS #########################*/
+		@media only screen and (min-width: 1450px) {
+		.container {
+		max-width: 1200px;
+/*		min-width: 960px;*/
+		width:  100%;
+		background-color: white;
+		position: float;
+		margin: auto;
+
+		display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: 50px 200px 200px auto 50px;
+		grid-gap: 10px;
+		grid-template-areas:
+			"space_top" 
+   			"banner"
+   			"text"
+   			"mini"
+   			"space_bottom";
+   		justify-content: center;
+		}
+
+
+		.banner {
+			grid-area: banner;
+		}
+		.photo {
+		  	background: white;
+		  	height: 200px ;
+		  	width: 200px;
+		  	margin: auto;
+		}
+		.photo>img {
+		  	object-fit: contain;
+		  	width: 100%;
+		  	max-height: 100%;
+		}
+
+		.mini {
+  			grid-area: mini;
+  			background: white;
+  			width: 90%;
+  			margin: auto;
+
+  			display:  grid;
+  			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			grid-gap: 10px;
+			grid-template-areas: none;
+			justify-items: center;
+			align-items: center;
+			justify-content: center;
+  		}
+
+  		
+  		.minimaps {
+  			object-fit: scale-down;
+  			max-width: 100%;
+  			margin: auto;
+  			transition: transform 250ms;
+  			cursor: pointer;
+  		}
+  		.minimaps:hover {
+  			transform: translateY(-10px);
+  		}
+
+  		.minimaps>img {
+		  	object-fit: scale-down;
+		  	max-width: 100%;
+		  	margin: auto;
+		}
+
+
+		.item {
+			background: white;
+			display: flex;
+  			justify-content: center;
+  			align-items: center;
+  			flex-direction: column;
+		}
+
+  		.text {
+  			display: flex;
+  			grid-area: text;
+  			background: white;
+  			justify-content: center;
+  			align-items: center;
+  			flex-direction: column;
+  			font-size: 24px;
+  			letter-spacing: 0.4em;
+  		}
+  		hr {
+  			border: none;
+  			width: 96%;               
+  			background-color:#3C4657;
+  			height: 1px;
+		}
+
+		.space {
+			grid-area: space_top, space_bottom;
+			background: white;
+		}
+		.space>img {
+			object-fit: scale-down;
+		  	max-width: 100%;
+		  	margin: auto;
+		}				
+		}
+	</style>
+
+	
+	<body>
+		<div class="container">
+			<div class="space"> </div>
+			<div class="banner">
+				<div class="photo">
+					<a href="index.html" class="photo">
+					<img src="images/P_yellow.png">
+					</a>
+				</div>
+			</div>
+		  	<div class="text">
+		  		<hr>
+		  		<p><i>PRESTO.CC</i></p>
+		  		<hr>
+		  	</div>
+			<div class="space"> <img src="images/presto_abgeschnitten.png"> </div>
+		</div>
+	</body>
+</html>
