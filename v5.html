@@ -92,16 +92,22 @@
                 grid-area: banner;
                 background-color: white;
                 height: auto;
-
-
             }
             .banner>img {
                 width: 100%;
                 height: auto;
                 max-height: 700px;
                 object-fit: cover;
-
             }
+            .container_content{
+                background-color: yellow;
+                height: 1000px;
+            }
+        @media only screen and (min-width: 400px) {
+            .container_content{
+                background-color: black;
+            }
+        }
     </style>
     <body>
         <div class="container_head">
@@ -134,6 +140,10 @@
             <div class="banner">
                 <img src="images/banner.jpg">
             </div>
+        </div>
+
+        <div class="container_content">
+            hallo
         </div>
     </body>
 </html>
