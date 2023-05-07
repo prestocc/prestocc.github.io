@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+		<link rel=icon href=favicon-32x32.ico>
+    	<link href=/apple-touch-icon-120x120.png rel=apple-touch-icon>
+	</head>
+	<title>
+		Presto.cc
+	</title>
+
+
+    <style type="text/css"> 
+
+        body{
+            font-family: futura;
+            color: #3C4657;
+            background: white;
+            padding: 0px;
+            margin: 0px;
+            }
+
+            .container_head {
+            width:  100vw;
+            max-height: 800px;
+            background-color:  white;
+            position: float;
+            margin: auto;
+    
+            display: grid;
+            grid-template-columns:100%;
+            grid-gap: 0px;
+            grid-template-areas:
+                "logo_and_links" 
+                "banner";
+            grid-template-rows: 100px auto;
+            justify-content: center;
+            }
+            .logo_and_links {
+                grid-area: logo_and_links;
+                display: table;
+                background-color: white;
+            }
+            .logo_area {
+                background-color: white;
+                left: 0px;
+                width: 50%;
+                height: 100px;
+                position: absolute;
+                justify-content: left;
+                display: flex;
+            }
+            .logo {
+                height: 100px;
+                width: 100px;
+                background-color: white;
+                display: flex;
+            }
+            .logo>img {
+                max-height: 50px;
+                max-width: 50px;
+                object-fit: scale-down;
+                margin: auto;
+                display: block;
+            }
+            .link_area {
+                background-color: white;
+                right: 0px;
+                width: 50%;
+                height: 100px;
+                position:absolute;
+                justify-content: right;
+                display: flex;
+            }
+
+            .links {
+                background-color: white;
+                object-fit: scale-down;
+                height: 100px;
+                width: 100px;
+                display: flex;
+            }
+            .links>img {
+                max-height: 50px;
+                max-width: 50px;
+                object-fit: scale-down;
+                margin:auto;
+                display: block;
+            }
+            .banner {
+                grid-area: banner;
+                background-color: white;
+                height: auto;
+
+
+            }
+            .banner>img {
+                width: 100%;
+                height: auto;
+                max-height: 700px;
+                object-fit: cover;
+
+            }
+    </style>
+    <body>
+        <div class="container_head">
+            <div class="logo_and_links">
+                <div class="logo_area">
+                    <div class="logo">
+                    <a href="https://www.google.de" target="_blank" class="logo">
+                        <img src="images/Logo_Sonne.png">
+                    </a>
+                    </div>
+                </div>
+                <div class="link_area">
+                    <div class="links">
+                        <a href="https://www.google.de" target="_blank" class="links">
+                            <img src="link_area/strava_icon_blue.png">
+                        </a>
+                    </div>
+                    <div class="links">
+                        <a href="https://www.google.de" target="_blank" class="links">
+                            <img src="link_area/komoot_icon_blue.png">
+                        </a>
+                    </div>
+                    <div class="links">
+                        <a href="https://www.google.de" target="_blank" class="links">
+                            <img src="link_area/instagram_icon_blue.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="banner">
+                <img src="images/banner.jpg">
+            </div>
+        </div>
+    </body>
+</html>
