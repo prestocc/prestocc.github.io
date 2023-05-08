@@ -7,7 +7,7 @@
     	<link href=/apple-touch-icon-120x120.png rel=apple-touch-icon>
 	</head>
 	<title>
-		Presto.cc
+		presto.cc
 	</title>
 
 
@@ -107,6 +107,10 @@
                 height: 800px;
                 object-fit: cover;
                 position: absolute;
+                -webkit-filter: grayscale(100%);
+                -moz-filter: grayscale(100%);
+                -ms-filter: grayscale(100%);
+                -o-filter: grayscale(100%);
                 filter:grayscale(100%);
             }
             .banner_text {
@@ -140,13 +144,17 @@
                 letter-spacing: normal;
             }
             .map {
-                -webkit-filter: grayscale(80%);
-                -moz-filter: grayscale(80%);
-                -ms-filter: grayscale(80%);
-                -o-filter: grayscale(80%);
-                filter: grayscale(50%);
+                -webkit-filter: grayscale(100%);
+                -moz-filter: grayscale(100%);
+                -ms-filter: grayscale(100%);
+                -o-filter: grayscale(100%);
+                filter: grayscale(100%);
             }
-
+            .space_bottom {
+                background-color: #ffcc48;
+                width:100%;
+                height: 25px;
+            }
         @media only screen and (min-width: 1000px) {
             .container_head {
                 grid-template-rows: 100px 450px;
@@ -234,19 +242,19 @@
                 </div>
             </div>            
         </div>
-        <!--
         <div class="container_content">
             <div class="text">
                 <div class="headline">
 		  		    <p>Nächster Tuesday Rollout: 09. Mai 2023</p>
                 </div>
                 <div class="description">
-                    <p> GPX-Track zum Download gibts <a href="socialtuesday.gpx">hier</a></p>
-                    <p><a href="https://www.strava.com/clubs/1069335/group_events/1381853" target="_blank">Link zum Strava Event</a></p>    
+                    <p> GPX-Track zum Download gibts <a href="socialtuesday.gpx" style="color:#ffcc48">hier</a>.</p>
+                    <p><a href="https://www.strava.com/clubs/1069335/group_events/1381853" target="_blank" style="color:#ffcc48">Link zum Strava Event</a></p>    
                 </div>
 		  	</div>
             <iframe class="map" src="https://www.komoot.de/tour/1102063899/embed?profile=1" width="100%" height="680" frameborder="0" scrolling="no"></iframe>
         </div>
-        -->
+        <div class="space_bottom">
+        </div>
     </body>
 </html>
