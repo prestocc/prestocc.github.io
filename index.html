@@ -194,23 +194,26 @@
                 -o-filter: grayscale(50%);
                 filter: grayscale(50%);
             }
-            .poweredby {
+            .space_bottom {
                 background-color: #3C4657;
+                width:100%;
+                height:130px;
+            }   
+            .poweredby {
                 color:#FFCC48;
                 width: 100%;
                 height:30px;
                 justify-content: center;
                 display: inline-flex;
             }
-            .space_bottom {
-                background-color: #3C4657;
+            .sponsors {
                 color:#FFCC48;
                 width:100%;
                 height: 100px;
                 display: inline-flex;
                 justify-content: center;
             }
-            .space_bottom>img {
+            .sponsors>img {
                 object-fit: scale-down;
                 margin: auto;
                 height: 75px;
@@ -374,11 +377,13 @@
 		  	</div>
             <iframe class="map" src="https://www.komoot.de/tour/1102063899/embed?profile=1" width="100%" height="680" frameborder="0" scrolling="no"></iframe>
         </div>
-        <div class="poweredby">
-            powered by
-        </div>
         <div class="space_bottom">
-            <img src="images/Berg.png">
+            <div class="poweredby">
+                powered by
+            </div>
+            <div class="sponsors">
+                <img src="images/Berg.png">
+            </div>
         </div>
     </body>
 </html>
