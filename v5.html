@@ -33,7 +33,7 @@
             grid-template-areas:
                 "logo_and_links" 
                 "banner";
-            grid-template-rows: 200px auto;
+            grid-template-rows: 200px 500px;
             justify-content: center;
             }
             .logo_and_links {
@@ -89,15 +89,23 @@
             }
             .banner {
                 grid-area: banner;
-                background-color: white;
-                height: auto;
-                text-align: center;
+                display: flex;
+                justify-content: center;
+                background-color: yellow;    
             }
             .banner>img {
                 width: 100%;
-                height: auto;
-                max-height: 700px;
+                height: 500px;
                 object-fit: cover;
+                position: absolute;
+            }
+            .banner_text {
+                display: absolute;
+                margin:auto;
+                color: white;
+                font-size: 40px;
+                z-index: +1;
+                letter-spacing: 0.4em;
             }
             .container_content{
                 background-color: white;
@@ -133,7 +141,7 @@
             }
         @media only screen and (min-width: 1000px) {
             .container_head {
-                grid-template-rows: 100px auto;
+                grid-template-rows: 100px 500px;
             }
             .logo_area {
                 height: 100px;
@@ -198,11 +206,12 @@
             </div>
             <div class="banner">
                 <img src="images/banner.jpg">
-                <div class="centered">
+                <div class="banner_text">
                     JOIN OUR RIDES
                 </div>
             </div>
         </div>
+        <!--
 
         <div class="container_content">
             <div class="text">
@@ -216,5 +225,6 @@
 		  	</div>
             <iframe src="https://www.komoot.de/tour/1102063899/embed?profile=1" width="100%" height="680" frameborder="0" scrolling="no"></iframe>
         </div>
+        -->
     </body>
 </html>
