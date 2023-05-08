@@ -91,6 +91,7 @@
                 grid-area: banner;
                 background-color: white;
                 height: auto;
+                text-align: center;
             }
             .banner>img {
                 width: 100%;
@@ -120,6 +121,15 @@
             .description {
                 font-size: 26px;
                 letter-spacing: normal;
+            }
+            .centered {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 40px;
+                color: white;
+                letter-spacing: 0.4em;
             }
         @media only screen and (min-width: 1000px) {
             .container_head {
@@ -188,6 +198,9 @@
             </div>
             <div class="banner">
                 <img src="images/banner.jpg">
+                <div class="centered">
+                    JOIN OUR RIDES
+                </div>
             </div>
         </div>
 
