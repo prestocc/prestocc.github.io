@@ -1,393 +1,432 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8">
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-		<link rel=icon href=favicon-32x32.ico>
-    	<link href=/apple-touch-icon-120x120.png rel=apple-touch-icon>
-	</head>
-	<title>
-		presto.cc
-	</title>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" href="favicon-32x32.ico" />
+    <link href=/apple-touch-icon-120x120.png rel=apple-touch-icon>
+  </head>
+  <title>presto.cc</title>
 
+  <script>
+    function httpGet(theUrl) {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("GET", theUrl, false); // false for synchronous request
+      xmlHttp.send(null);
+      return xmlHttp.responseText;
+    }
 
-    <style type="text/css"> 
+    window.onload = function () {
+      frame = document.getElementById("komoot_frame");
+      let tour_index = frame.src.search("tour/");
+      let embed_index = frame.src.search("/embed");
+      let tour_id = frame.src.slice(tour_index + 5, embed_index);
+      console.log(tour_id);
+      let tour_name = JSON.parse(
+        httpGet("https://external-api.komoot.de/v007/tours/" + tour_id)
+      ).name;
+      console.log(tour_name);
+      let headline = document.getElementById("headline");
+      headline.textContent = "Nächster " + tour_name;
 
-        body{
-            font-family: futura;
-            color: #3C4657;
-            background: white;
-            padding: 0px;
-            margin: 0px;
-            min-width: 800px;
-            }
-            .container_head {
-            width:  100vw;
-            background-color:  white;
-            position: float;
-            margin: auto;
-    
-            display: grid;
-            grid-template-columns:100%;
-            grid-gap: 0px;
-            grid-template-areas:
-                "logo_and_links" 
-                "banner";
-            grid-template-rows: 250px 850px;
-            justify-content: center;
-            min-width: 800px;
-            }
-            .logo_and_links {
-                grid-area: logo_and_links;                
-                display: grid;
-                grid-template-areas: "links rechts";
-                background-color: white;
-                grid-auto-flow: column;
-                grid-template-columns: minmax(400px, 50%) minmax(400px,50%);
-                min-width: 800px;
-                width:98%;
-                justify-content: space-between;
-                margin-left: 0px;
-                
-            }
-            .logo_area {
-                background-color: white;
-                grid-area: links;
-                height: 250px;
-                display: inline-flex;
-                justify-content: start;
-            }
-            .logo {
-                height: 250px;
-                width: 250px;
-                background-color: white;
-                display:inline-flex;
-            }
-            .logo>img {
-                max-height: 150px;
-                max-width: 150px;
-                object-fit: scale-down;
-                margin: auto;
-            }
-            .logotext {
-                display: absolute;
-                margin-left: 0;
-                margin-top: auto;
-                margin-bottom: auto;
-                font-size: 34px;
-            }
-            .link_area {
-                background-color: white;
-                height: 200px;
-                grid-area: rechts;
-                display: inline-flex;
-                justify-content: end;
-            }
-            .links {
-                background-color: white;
-                object-fit: scale-down;
-                height: 250px;
-                width: 100px;
-                display: inline-flex;
-            }
-            .links>img {
-                max-height: 75px;
-                max-width: 75px;
-                object-fit: scale-down;
-                margin: auto;
-            }
-            .banner {
-                grid-area: banner;
-                display: flex;
-                justify-content: center;
-                background-color: white; 
-            }
-            .banner>img {
-                width: 100%;
-                height: 800px;
-                object-fit: cover;
-                position: absolute;
-                -webkit-filter: grayscale(100%);
-                -moz-filter: grayscale(100%);
-                -ms-filter: grayscale(100%);
-                -o-filter: grayscale(100%);
-                filter:grayscale(100%);
-            }
-            .banner_text {
-                display: absolute;
-                margin:auto;
-                color: #FFCC48;
-                font-size: 60px;
-                z-index: +1;
-                letter-spacing: 0.4em;
-            }
-            .container_content{
-                background-color: white;
-                height: 1200px;
-                max-width: 800px;
-                margin: auto;
-            }
-            .text {
-                  display: flex;
-                  grid-area: text;
-                  justify-content: center;
-                  align-items: center;
-                  flex-direction: column;
-                  font-size: 20px;
-                  background-color: white;
-            }
-            .headline {
-                font-size: 40px;
-                background-color: white;
-                text-align: center;
-            }
-            .description {
-                font-size: 26px;
-                letter-spacing: normal;
-                background-color: white;
-                text-align: center;
-            }
-            .icon_area{
-                height:200px;
-                width:800px;
-                background-color: white;
-                display: inline-flex;
-                justify-content: center;
-                text-align: center;
-                
-            }
-            .w{
-                height:200px;
-                width:200px;
-                background-color: white;
-            }
-            .w_icon{
-                height: 100px;
-                width: 100px;
-                background-color: white;
-                justify-content: center;
-                display: inline-flex;
-            }
-            .w_icon_no_link{
-                height: 100px;
-                width: 100px;
-                background-color: white;
-                justify-content: center;
-                display: inline-flex;
-            }
-            .w_icon>img {
-                object-fit:scale-down;
-                margin: auto;
-                height:50px;
-            }
-            .w_icon_no_link>img {
-                object-fit:scale-down;
-                margin: auto;
-                height:50px;
-            }
-            .w_text{
-                font-size: 26px;
-            }
-            .map {
-                -webkit-filter: grayscale(50%);
-                -moz-filter: grayscale(50%);
-                -ms-filter: grayscale(50%);
-                -o-filter: grayscale(50%);
-                filter: grayscale(50%);
-            }
-            .space_bottom {
-                background-color: #3C4657;
-                width:100%;
-                height:170px;
-            }   
-            .poweredby {
-                color:#FFCC48;
-                width: 100%;
-                height:30px;
-                justify-content: center;
-                display: inline-flex;
-            }
-            .sponsors {
-                color:#FFCC48;
-                width:100%;
-                height: 100px;
-                display: inline-flex;
-                justify-content: center;
-            }
-            .sponsors>img {
-                object-fit: scale-down;
-                margin: auto;
-                height: 75px;
-                width: auto;
-            }
-        @media only screen and (min-width: 1000px) {
-            .container_head {
-                grid-template-rows: 100px 450px;
-            }
-            .logo_and_links {
-                width: 100%;
-                margin: auto;
-            }
-            .logo_area {
-                height: 100px;
-            }
-            .logo {
-                height: 100px;
-                width: 100px;
-            }
-            .logo>img {
-                max-height: 50px;
-                max-width: 50px;
-            }
-            .logotext {
-                font-size: 20px;
-            }
-            .banner>img {
-                height: 400px;
-            }
-            .banner_text {
-                font-size: 40px;
-                letter-spacing: 0.4em;
-            }
-            .container_content{
-                height: 1200px;
-            }
-            .link_area{
-                height: 100px;
-            }
-            .links {
-                height: 100px;
-                width: 100px;
-                transition: transform 250ms;
-  			    cursor: pointer;
-            }
-            .links>img {
-                max-height: 50px;
-                max-width: 50px;
-            }
-            .links:hover {
-  			transform: translateY(-5px);
-  		    }
-            .headline{
-                font-size: 26px;
-            }
-            .description{
-                font-size: 16px;
-            }
-            .w_icon {
-                transition: transform 250ms;
-  			    cursor: pointer;
-            }
-            .w_icon:hover{
-                transform: translateY(-5px);
-            }
-            .w_text {
-                font-size: 16px;
-            }
-            .space_bottom {
-                height:150px;
-            }
-        }
-    </style>
-    <body>
-        <div class="container_head">
-            <div class="logo_and_links">
-                <div class="logo_area">
-                    <div class="logo">
-                        <img src="images/Logo_Sonne.png">
-                    </div>
-                    <div class="logo">
-                        <div class="logotext">
-                            presto.cc
-                        </div>
-                    </div>  
-                </div>
-                <div class="link_area">
-                    
-                    <div class="links">
-                        <a href="https://www.strava.com/clubs/prestocc" target="_blank" class="links">
-                            <img src="link_area/strava_icon_blue.png">
-                        </a>
-                    </div>
-                    <div class="links">
-                        <a href="https://www.komoot.de/user/2523052665694" target="_blank" class="links">
-                            <img src="link_area/komoot_icon_blue.png">
-                        </a>
-                    </div>
-                    <div class="links">
-                        <a href="https://www.instagram.com/presto.cc" target="_blank" class="links">
-                            <img src="link_area/instagram_icon_blue.png">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="banner">
-                <img src="images/banner.jpg">
-                <div class="banner_text">
-                    <b>JOIN OUR RIDES</b>
-                </div>
-            </div>            
+      let tour_gpx = document.getElementById("komoot_gpx");
+      tour_gpx.href =
+        "https://external-api.komoot.de/v007/tours/" + tour_id + ".gpx";
+    };
+  </script>
+
+  <style type="text/css">
+    body {
+      font-family: futura;
+      color: #3c4657;
+      background: white;
+      padding: 0px;
+      margin: 0px;
+      min-width: 800px;
+    }
+    .container_head {
+      width: 100vw;
+      background-color: white;
+      position: float;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 100%;
+      grid-gap: 0px;
+      grid-template-areas:
+        "logo_and_links"
+        "banner";
+      grid-template-rows: 250px 850px;
+      justify-content: center;
+      min-width: 800px;
+    }
+    .logo_and_links {
+      grid-area: logo_and_links;
+      display: grid;
+      grid-template-areas: "links rechts";
+      background-color: white;
+      grid-auto-flow: column;
+      grid-template-columns: minmax(400px, 50%) minmax(400px, 50%);
+      min-width: 800px;
+      width: 98%;
+      justify-content: space-between;
+      margin-left: 0px;
+    }
+    .logo_area {
+      background-color: white;
+      grid-area: links;
+      height: 250px;
+      display: inline-flex;
+      justify-content: start;
+    }
+    .logo {
+      height: 250px;
+      width: 250px;
+      background-color: white;
+      display: inline-flex;
+    }
+    .logo > img {
+      max-height: 150px;
+      max-width: 150px;
+      object-fit: scale-down;
+      margin: auto;
+    }
+    .logotext {
+      display: absolute;
+      margin-left: 0;
+      margin-top: auto;
+      margin-bottom: auto;
+      font-size: 34px;
+    }
+    .link_area {
+      background-color: white;
+      height: 200px;
+      grid-area: rechts;
+      display: inline-flex;
+      justify-content: end;
+    }
+    .links {
+      background-color: white;
+      object-fit: scale-down;
+      height: 250px;
+      width: 100px;
+      display: inline-flex;
+    }
+    .links > img {
+      max-height: 75px;
+      max-width: 75px;
+      object-fit: scale-down;
+      margin: auto;
+    }
+    .banner {
+      grid-area: banner;
+      display: flex;
+      justify-content: center;
+      background-color: white;
+    }
+    .banner > img {
+      width: 100%;
+      height: 800px;
+      object-fit: cover;
+      position: absolute;
+      -webkit-filter: grayscale(100%);
+      -moz-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+      -o-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+    .banner_text {
+      display: absolute;
+      margin: auto;
+      color: #ffcc48;
+      font-size: 60px;
+      z-index: +1;
+      letter-spacing: 0.4em;
+    }
+    .container_content {
+      background-color: white;
+      height: 1200px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .text {
+      display: flex;
+      grid-area: text;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 20px;
+      background-color: white;
+    }
+    .headline {
+      font-size: 40px;
+      background-color: white;
+      text-align: center;
+    }
+    .description {
+      font-size: 26px;
+      letter-spacing: normal;
+      background-color: white;
+      text-align: center;
+    }
+    .icon_area {
+      height: 200px;
+      width: 800px;
+      background-color: white;
+      display: inline-flex;
+      justify-content: center;
+      text-align: center;
+    }
+    .w {
+      height: 200px;
+      width: 200px;
+      background-color: white;
+    }
+    .w_icon {
+      height: 100px;
+      width: 100px;
+      background-color: white;
+      justify-content: center;
+      display: inline-flex;
+    }
+    .w_icon_no_link {
+      height: 100px;
+      width: 100px;
+      background-color: white;
+      justify-content: center;
+      display: inline-flex;
+    }
+    .w_icon > img {
+      object-fit: scale-down;
+      margin: auto;
+      height: 50px;
+    }
+    .w_icon_no_link > img {
+      object-fit: scale-down;
+      margin: auto;
+      height: 50px;
+    }
+    .w_text {
+      font-size: 26px;
+    }
+    .map {
+      -webkit-filter: grayscale(50%);
+      -moz-filter: grayscale(50%);
+      -ms-filter: grayscale(50%);
+      -o-filter: grayscale(50%);
+      filter: grayscale(50%);
+    }
+    .space_bottom {
+      background-color: #3c4657;
+      width: 100%;
+      height: 170px;
+    }
+    .poweredby {
+      color: #ffcc48;
+      width: 100%;
+      height: 30px;
+      justify-content: center;
+      display: inline-flex;
+    }
+    .sponsors {
+      color: #ffcc48;
+      width: 100%;
+      height: 100px;
+      display: inline-flex;
+      justify-content: center;
+    }
+    .sponsors > img {
+      object-fit: scale-down;
+      margin: auto;
+      height: 75px;
+      width: auto;
+    }
+    @media only screen and (min-width: 1000px) {
+      .container_head {
+        grid-template-rows: 100px 450px;
+      }
+      .logo_and_links {
+        width: 100%;
+        margin: auto;
+      }
+      .logo_area {
+        height: 100px;
+      }
+      .logo {
+        height: 100px;
+        width: 100px;
+      }
+      .logo > img {
+        max-height: 50px;
+        max-width: 50px;
+      }
+      .logotext {
+        font-size: 20px;
+      }
+      .banner > img {
+        height: 400px;
+      }
+      .banner_text {
+        font-size: 40px;
+        letter-spacing: 0.4em;
+      }
+      .container_content {
+        height: 1200px;
+      }
+      .link_area {
+        height: 100px;
+      }
+      .links {
+        height: 100px;
+        width: 100px;
+        transition: transform 250ms;
+        cursor: pointer;
+      }
+      .links > img {
+        max-height: 50px;
+        max-width: 50px;
+      }
+      .links:hover {
+        transform: translateY(-5px);
+      }
+      .headline {
+        font-size: 26px;
+      }
+      .description {
+        font-size: 16px;
+      }
+      .w_icon {
+        transition: transform 250ms;
+        cursor: pointer;
+      }
+      .w_icon:hover {
+        transform: translateY(-5px);
+      }
+      .w_text {
+        font-size: 16px;
+      }
+      .space_bottom {
+        height: 150px;
+      }
+    }
+  </style>
+  <body>
+    <div class="container_head">
+      <div class="logo_and_links">
+        <div class="logo_area">
+          <div class="logo">
+            <img src="images/Logo_Sonne.png" />
+          </div>
+          <div class="logo">
+            <div class="logotext">presto.cc</div>
+          </div>
         </div>
-        <div class="container_content">
-            <div class="text">
-                <div class="headline">
-                    <p>Nächster Social Ride: 12.07.2023</p>
-                </div>
-                <div class="description">
-                    <p>Unsere After Work Runde in T&uuml;bingen. Ein Social Ride zum Plaudern, Freunde Treffen und neue Routen Entdecken.</p>
-                </div>
-            
-            <div class="icon_area">
-                <div class="w">
-                    <div class="w_icon">
-                        <a href="https://goo.gl/maps/yr9dkjF2BoM9R2bm9" target="_blank" class="w_icon">
-                            <img src="images/link_location.png">
-                        </a>
-                    </div>
-                    <div class="w_text">
-                        westspitz, tübingen
-                    </div>
-                </div>
-                <div class="w">
-                    <div class="w_icon_no_link">
-                        <img src="images/link_time.png">
-                    </div>
-                    <div class="w_text">
-                        mi 18:00
-                    </div>
-                </div>
-                <div class="w">
-                    <div class="w_icon">
-                        <a href="social_ride.gpx" class="w_icon">
-                            <img src="images/link_gpx_download.png">
-                        </a>
-                    </div>
-                    <div class="w_text">
-                        download gpx
-                    </div>
-                </div>
-                <div class="w">
-                    <div class="w_icon">
-                        <a href="https://www.strava.com/clubs/1069335/group_events/1381853" target="_blank" class="w_icon">
-                            <img src="images/link_strava_event.png">
-                        </a>
-                    </div>
-                    <div class="w_text">
-                        strava event
-                    </div>
-                </div>
-            </div>
-		  	</div>
-            <iframe class="map" src="https://www.komoot.de/tour/1155871581/embed?profile=1" width="100%" height="680" frameborder="0" scrolling="no"></iframe>
+        <div class="link_area">
+          <div class="links">
+            <a
+              href="https://www.strava.com/clubs/prestocc"
+              target="_blank"
+              class="links"
+            >
+              <img src="link_area/strava_icon_blue.png" />
+            </a>
+          </div>
+          <div class="links">
+            <a
+              href="https://www.komoot.de/user/2523052665694"
+              target="_blank"
+              class="links"
+            >
+              <img src="link_area/komoot_icon_blue.png" />
+            </a>
+          </div>
+          <div class="links">
+            <a
+              href="https://www.instagram.com/presto.cc"
+              target="_blank"
+              class="links"
+            >
+              <img src="link_area/instagram_icon_blue.png" />
+            </a>
+          </div>
         </div>
-        <div class="space_bottom">
-            <div class="poweredby">
-                powered by
-            </div>
-            <div class="sponsors">
-                <img src="images/Berg.png">
-            </div>
+      </div>
+
+      <div class="banner">
+        <img src="images/banner.jpg" />
+        <div class="banner_text">
+          <b>JOIN OUR RIDES</b>
         </div>
-    </body>
+      </div>
+    </div>
+    <div class="container_content">
+      <div class="text">
+        <div class="headline">
+          <p id="headline">Nächster Social Ride: TBA</p>
+        </div>
+        <div class="description">
+          <p>
+            Unsere After Work Runde in T&uuml;bingen. Ein Social Ride zum
+            Plaudern, Freunde Treffen und neue Routen Entdecken.
+          </p>
+        </div>
+
+        <div class="icon_area">
+          <div class="w">
+            <div class="w_icon">
+              <a
+                href="https://goo.gl/maps/yr9dkjF2BoM9R2bm9"
+                target="_blank"
+                class="w_icon"
+              >
+                <img src="images/link_location.png" />
+              </a>
+            </div>
+            <div class="w_text">westspitz, tübingen</div>
+          </div>
+          <div class="w">
+            <div class="w_icon_no_link">
+              <img src="images/link_time.png" />
+            </div>
+            <div class="w_text">mi 18:00</div>
+          </div>
+          <div class="w">
+            <div class="w_icon">
+              <a href="social_ride.gpx" class="w_icon" id="komoot_gpx">
+                <img src="images/link_gpx_download.png" />
+              </a>
+            </div>
+            <div class="w_text">download gpx</div>
+          </div>
+          <div class="w">
+            <div class="w_icon">
+              <a
+                href="https://www.strava.com/clubs/1069335/group_events/1381853"
+                target="_blank"
+                class="w_icon"
+              >
+                <img src="images/link_strava_event.png" />
+              </a>
+            </div>
+            <div class="w_text">strava event</div>
+          </div>
+        </div>
+      </div>
+      <iframe
+        class="map"
+        src="https://www.komoot.de/tour/1155871581/embed?profile=1"
+        width="100%"
+        height="680"
+        frameborder="0"
+        scrolling="no"
+        id="komoot_frame"
+      ></iframe>
+    </div>
+    <div class="space_bottom">
+      <div class="poweredby">powered by</div>
+      <div class="sponsors">
+        <img src="images/Berg.png" />
+      </div>
+    </div>
+  </body>
 </html>
